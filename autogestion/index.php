@@ -1,33 +1,37 @@
 <?php 
 
-include '../back/db/conexion.php';
-$objeto = new Conexion();
-$conexion = $objeto->Conectar();
+
 
 /////$hash = 107375838432;
+function ValidarHash($hash,$cod){
+      include '../back/db/conexion.php';
+      $objeto = new Conexion();
+      $conexion = $objeto->Conectar();
+
+      if (strlen($hash) > 3 || strlen($cod) > 3) {
+            $consulta = "SELECT apellido,fechasep FROM `extintos` WHERE `COD_EXTINTO` = '$cod' ";
+            $resultado = $conexion->prepare($consulta);
+            $resultado->execute();
+            $row = $resultado->fetch();
+                      if (strlen($row["apellido"]) < 2){
+                        header('Location: https://paviotti.com.ar/');
+                      }else{
+                        return $row["apellido"];
+                      }
+              if($resultado->rowCount() != 1){
+                header('Location: https://paviotti.com.ar/');
+              }
+
+      }else {
+          header('Location: https://paviotti.com.ar/');
+      }
+}
+
 
 $hash = $_GET['hash'];
-if (!$hash) {
-  header('Location: https://paviotti.com.ar/');
-}else{
-          $cod = substr($_GET['hash'],0,-2);
+$cod = substr($_GET['hash'],0,-2);
 
-
-                $consulta = "SELECT apellido,fechasep FROM `extintos` WHERE `COD_EXTINTO` = '$cod' ";
-                $resultado = $conexion->prepare($consulta);
-                $resultado->execute();
-
-                while ($row = $resultado->fetch()){
-                      $apellido = $row["apellido"];
-                      $fecha = $row["fechasep"];
-                      }
-
-                  if($resultado->rowCount() != 1){
-                    header('Location: https://paviotti.com.ar/');
-                  }
-
-
-}
+$apellido =  ValidarHash($hash,$cod);
 
 
 ?>

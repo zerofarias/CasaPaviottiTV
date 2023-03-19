@@ -8,7 +8,8 @@ $(document).ready(function() {
 
         
         ///// funcion inicia si el usuario presiona boton guardar
-        $(".upload").on('click', function() {
+        $(".upload").on('click', function(event) {
+            event.preventDefault()
             const miCheckbox = document.getElementById('terminos');
             if(miCheckbox.checked) {
                 SubirImagen();
@@ -25,11 +26,7 @@ $(document).ready(function() {
 
 
             function SubirImagen (){
-                //var formData = new FormData();
-                //var files = $('#image')[0].files[0];
-                //formData.append('file',files);
-                
-
+                //.preventDefault();
                 var file_data = $('#image').prop('files')[0];
                 var formData = new FormData();
                     formData.append('file', file_data);
@@ -37,6 +34,7 @@ $(document).ready(function() {
                     formData.append('religion', $('#religion').val());
                     formData.append('apodo', $('#apodo').val());
                     formData.append('frase', $('#frase').val());
+                    formData.append('hash', $('#hash').val());
 
 
                 $.ajax({
@@ -49,10 +47,12 @@ $(document).ready(function() {
                         const religion  = document.getElementById("religion").value;
                         const apodo  = document.getElementById("apodo").value;
                         const frase  = document.getElementById("frase").value;
+                        const hash  = document.getElementById("hash").value;
+                        
                         console.log(response);
                         switch (response) {
                             case '1':
-                                alert(religion)
+                                
                                 break;
                             case '2':
                                     Swal.fire({
@@ -88,7 +88,7 @@ $(document).ready(function() {
                         }
                     }
                 });
-                return false;
+                //return false;
             };
 
 

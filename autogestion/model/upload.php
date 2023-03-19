@@ -8,6 +8,9 @@ $religion = (isset($_POST['religion'])) ? $_POST['religion'] : '';
 $apodo = (isset($_POST['apodo'])) ? $_POST['apodo'] : '';
 $frase = (isset($_POST['frase'])) ? $_POST['frase'] : '';
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
+$hash = (isset($_POST['hash'])) ? $_POST['hash'] : '';
+/////// convierto $hash all verdadero codigo
+$cod = substr($hash,0,-2);
 
 $img = 'No se ha seleccionado ninguna imagen';
 if (is_array($_FILES) && count($_FILES) > 0) {
@@ -18,7 +21,7 @@ if (is_array($_FILES) && count($_FILES) > 0) {
         || ($_FILES["file"]["type"] == "image/gif")) {
         if (move_uploaded_file($_FILES["file"]["tmp_name"], "../images/".$_FILES['file']['name'])) {
             $url = $_FILES['file']['name'];
-            $consulta = "UPDATE `extintos` SET `foto`= '$url' WHERE `COD_EXTINTO` = '1073750401' ";
+            $consulta = "UPDATE `extintos` SET `foto`= '$url' WHERE `COD_EXTINTO` = '$cod' ";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();
             //se guardo correctamente
