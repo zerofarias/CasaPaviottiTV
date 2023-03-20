@@ -45,6 +45,7 @@ $apellido =  ValidarHash($hash,$cod);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Casa Paviotti - Homenaje <?php echo $apellido; ?></title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="../back/imglogo/casalogo.png">
   </head>
   <body>
     <section class="wrapper">
