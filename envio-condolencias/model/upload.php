@@ -4,13 +4,18 @@ include '../../back/db/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
-$religion = (isset($_POST['religion'])) ? $_POST['religion'] : '';
-$apodo = (isset($_POST['apodo'])) ? $_POST['apodo'] : '';
+$nombre = (isset($_POST['nombre'])) ? $_POST['nombre'] : '';
+$apellido = (isset($_POST['apellido'])) ? $_POST['apellido'] : '';
+$tel = (isset($_POST['tel'])) ? $_POST['tel'] : '';
+$mail = (isset($_POST['mail'])) ? $_POST['mail'] : '';
+$terminos = (isset($_POST['terminos'])) ? $_POST['terminos'] : '';
+
 $frase = (isset($_POST['frase'])) ? $_POST['frase'] : '';
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $hash = (isset($_POST['hash'])) ? $_POST['hash'] : '';
+
 /////// convierto $hash all verdadero codigo
-$cod = substr($hash,0,-2);
+$cod = substr($hash,3);
 
 $img = 'No se ha seleccionado ninguna imagen';
 switch ($opcion) {
@@ -24,12 +29,8 @@ switch ($opcion) {
                 if (move_uploaded_file($_FILES["file"]["tmp_name"], "../images/".$cod.$_FILES['file']['name'])) {
                     $url = $cod.$_FILES['file']['name'];
                     //$consulta = "UPDATE `extintos` SET `foto`= '$url' WHERE `COD_EXTINTO` = '$cod' ";
-                    $consulta = " UPDATE `extintos` SET `foto`= '$url',
-                                                        `frace`= '$frase',
-                                                        `religion`= '$religion',
-                                                        `apodo`= '$apodo',
-                                                        `estado`= '1'
-                    WHERE `COD_EXTINTO` = '$cod'";
+                    $consulta = "INSERT INTO `condolencias`(`COD_EXTINTO`, `nombre`, `apellido`, `tel`, `mail`, `mensaje`, `foto`) 
+                                                        VALUES ('$cod','$nombre','$apellido','$tel','$mail','$frase','$url')";
                     $resultado = $conexion->prepare($consulta);
                     $resultado->execute();
 
@@ -55,15 +56,10 @@ switch ($opcion) {
 
         break;
     case 2:
-        $consulta = " UPDATE `extintos` SET 
-                                `foto`= null,
-                                `frace`= '$frase',
-                                `religion`= '$religion',
-                                `apodo`= '$apodo',
-                                `estado`= '1'
-        WHERE `COD_EXTINTO` = '$cod'";
-        $resultado = $conexion->prepare($consulta);
-        $resultado->execute();
+        $consulta = "INSERT INTO `condolencias`(`COD_EXTINTO`, `nombre`, `apellido`, `tel`, `mail`, `mensaje`, `foto`) 
+                                                        VALUES ('$cod','$nombre','$apellido','$tel','$mail','$frase',NULL   )";
+                    $resultado = $conexion->prepare($consulta);
+                    $resultado->execute();
             if ($resultado) {
                 $img = 1;
             }else{

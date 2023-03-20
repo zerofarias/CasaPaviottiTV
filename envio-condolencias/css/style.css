@@ -37,7 +37,7 @@ body {
 .form.login {
   position: absolute;
   left: 50%;
-  bottom: -86%;
+  bottom: -88%;
   transform: translateX(
     -50%
   );
@@ -69,11 +69,21 @@ body {
   font-weight: 600;
   cursor: pointer;
 }
+.form
+  p {
+  font-size: 14px;
+  margin-top: -3%;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
 .form.login
   header {
   color: #333;
   opacity: 0.6;
 }
+
 .wrapper.active
   .form.login
   header {
@@ -93,7 +103,7 @@ body {
 }
 form
   input {
-  height: 60px;
+  height: 50px;
   outline: none;
   border: none;
   padding: 0
@@ -106,20 +116,7 @@ form
 }
 form
   select {
-  height: 60px;
-  outline: none;
-  border: none;
-  padding: 0
-    15px;
-  font-size: 16px;
-  font-weight: 400;
-  color: #333;
-  border-radius: 8px;
-  background: #fff;
-}
-form
-  button {
-  height: 60px;
+  height: 50px;
   outline: none;
   border: none;
   padding: 0
@@ -132,7 +129,7 @@ form
 }
 form
   textarea {
-  height: 120px;
+  height: 100px;
   outline: none;
   border: none;
   padding: 0
@@ -198,7 +195,7 @@ form
 }
 form
   input[type="submit"] {
-  margin-top: 15px;
+  margin-top: 1%;
   padding: none;
   font-size: 18px;
   font-weight: 500;

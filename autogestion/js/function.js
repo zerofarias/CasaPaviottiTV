@@ -26,16 +26,34 @@ $(document).ready(function() {
 
 
             function SubirImagen (){
-                //.preventDefault();
                 var file_data = $('#image').prop('files')[0];
+                var religion = $('#religion').val();
+                var apodo = $('#apodo').val();
                 var formData = new FormData();
-                    formData.append('file', file_data);
-                //para agregar parametros extras al formData
-                    formData.append('religion', $('#religion').val());
-                    formData.append('apodo', $('#apodo').val());
-                    formData.append('frase', $('#frase').val());
-                    formData.append('hash', $('#hash').val());
+                
+                    
+                    if (file_data) {
+                        formData.append('file', file_data);
+                        formData.append('opcion', 1);
+                    }else{
+                        formData.append('opcion', 2);
+                    }
 
+                    if (religion) {
+                        formData.append('religion', $('#religion').val());
+                    }
+
+                    if (apodo) {
+                        formData.append('apodo', $('#apodo').val());
+                    }
+
+                    if (frase) {
+                        formData.append('frase', $('#frase').val());
+                    }
+
+                    if (hash) {
+                        formData.append('hash', $('#hash').val());
+                    }
 
                 $.ajax({
                     url: 'model/upload.php',
@@ -52,7 +70,14 @@ $(document).ready(function() {
                         console.log(response);
                         switch (response) {
                             case '1':
-                                
+                                    Swal.fire({
+                                        position: 'top',
+                                        icon: 'success',
+                                        title: 'GUARDADO CON EXITO',
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    })   
+
                                 break;
                             case '2':
                                     Swal.fire({
@@ -91,12 +116,4 @@ $(document).ready(function() {
                 //return false;
             };
 
-
-            //religion
-            //apodo
-            //frase
-            //terminos
-            //signupCheck
-
-
-        });
+});

@@ -1,8 +1,5 @@
 <?php 
 
-
-
-/////$hash = 107375838432;
 function ValidarHash($hash,$cod){
       include '../back/db/conexion.php';
       $objeto = new Conexion();
@@ -29,8 +26,8 @@ function ValidarHash($hash,$cod){
 }
 
 
-$hash = $_GET['hash'];
-$cod = substr($_GET['hash'],0,-2);
+$hash = $_GET['condolencia'];
+$cod = substr($_GET['condolencia'],3);
 
 $apellido =  ValidarHash($hash,$cod);
 
@@ -43,32 +40,28 @@ $apellido =  ValidarHash($hash,$cod);
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Casa Paviotti - Homenaje <?php echo $apellido; ?></title>
+    <title>Casa Paviotti - Envio de Condolencias | <?php echo $apellido; ?></title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <section class="wrapper">
       <div class="form signup">
+        <p class="sub-title">- Deje Su Mensaje -</p>
         <header><?php echo $apellido; ?></header>
-        <form action="" enctype="multipart/form-data">
-          <select id="religion">
-            <option value="0" >Seleccione una Religion</option>
-            <option value="1">Cristianismo &nbsp;&nbsp; ✝</option>
-            <option value="2">Judaismo &nbsp;&nbsp; ✡</option>
-            <option value="3">Hinduismo &nbsp;&nbsp; ॐ</option>
-            <option value="4">Islam &nbsp;&nbsp; ☪</option>
-            <option value="5">Budismo &nbsp;&nbsp; ☸</option>
-            <option value="6">Taoismo &nbsp;&nbsp; ☯</option>
-          </select>
-          <input type="text"  id="apodo" placeholder="Apodo (opcional)" autocomplete="off" />
-          <input type="text"  id="hash" value="<?php echo $hash?>" autocomplete="off" hidden />
-          <textarea rows="" cols="" id="frase" placeholder="Frase que se mostrara" autocomplete="off" ></textarea>
+        <form class="form-class" action="" enctype="multipart/form-data">
+        <input type="text"  id="nombre" placeholder="Tu Nombre" autocomplete="off" required />
+        <input type="text"  id="apellido" placeholder="Tu Apellido" autocomplete="off" required />
+        <input type="text"  id="tel" placeholder="Numero Tel" autocomplete="off" required />
+        <input type="text"  id="hash" value="<?php echo $hash?>" autocomplete="off" hidden />
+        <input type="mail"  id="mail" placeholder="E-Mail" autocomplete="off" />
+        <textarea rows="" cols="" id="frase" placeholder="Su Condolencia" autocomplete="off" required></textarea>
+          
           <input class ="file-select" id="image" type="file"  autocomplete="off"/>
           <div class="checkbox">
             <input type="checkbox" id="terminos" required />
             <label for="signupCheck">Acepto Terminos y Condiciones</label>
           </div>
-          <input type="submit" class="upload" id="save" value="GUARDAR" />
+          <input type="submit" class="upload" id="save" value="ENVIAR" />
         </form>
       </div>
 
