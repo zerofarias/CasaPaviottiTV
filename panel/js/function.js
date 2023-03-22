@@ -1,22 +1,35 @@
 $(document).ready(function() {
 
-    function Validar(user,pass) {
+    function Validar(user,pass,opcion) {
         $.ajax({
             url: 'model/valida.php',
-            type: 'post',
-            data: {u:user, p:pass, opcion:2},
-            contentType: false,
-            processData: false,
-            success: function(response) {
-        
+            type: "POST",
+            dataType: "json",
+            data: { user:user , pass:pass , opcion:opcion},
+            success: function(data){
+            if (data === 0101) {
+                alert('passo')
+            }else{
+                Swal.fire({
+                    position: 'top',
+                    icon: 'warning',
+                    title: 'Datos Incorrectos',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+            }
+        console.log(data);
             }
         })
     } 
 
         $(".upload").on('click', function(event) {
             event.preventDefault();
-                var user = $('#user').val();
-                var pass = $('#pass').val();
+                let user = $('#user').val();
+                let pass = $('#pass').val();
+                let opcion = 1;
+
+                
                     
                     if (user.length==0){
                             Swal.fire({
@@ -36,7 +49,7 @@ $(document).ready(function() {
                                         timer: 1500
                                     })
                                 }else{
-                                        Validar(user,pass)
+                                        Validar(user,pass,opcion)
                                         }
                             }
                     });

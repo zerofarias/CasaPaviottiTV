@@ -1,5 +1,7 @@
 <?php
-session_start();
+
+
+
 
 include '../../back/db/conexion.php';
 $objeto = new Conexion();
@@ -11,25 +13,27 @@ $conexion = $objeto->Conectar();
     date_default_timezone_set('America/Argentina/Cordoba'); 
 	$fecha = date('Y-m-d H:i:s');
 
+$opcion = 1;
+session_start();
+    
     switch ($opcion) {
         case 1:
-            $stmt = $dbh->prepare("CALL INCIO_SESSION('$i')");
-            $stmt->bindParam(1, $return_value, PDO::PARAM_STR, 4000);
-
-            // call the stored procedure
-            $stmt->execute();		
-            
-
-                //$_SESSION['id']=$row['id'];
-                //$_SESSION['user']=$row['user'];
-                //$_SESSION['rol']=$row['rol'];
-                //$_SESSION['fullnombre']=$row['fullnombre'];
+                $consulta = "SELECT * FROM users WHERE USER = '$user' ";			
+                $resultado = $conexion->prepare($consulta);
+                $resultado->execute();
+                $row = $resultado->fetch();
+                $count = $resultado->rowCount();
+                if ($row['pass'] == $pass && $count == 1) {
+                    $paso = 0101;
+                }else{
+                    $paso = 4;
+                }
             break;
-        
-        default:
-            # code...
-            break;
+
     }
+print json_encode($paso, JSON_UNESCAPED_UNICODE);//envio el array final el formato json a AJAX
+           // $conexion=null; 
     
-print json_encode($stmt, JSON_UNESCAPED_UNICODE);//envio el array final el formato json a AJAX
-$conexion=null;
+
+    //print json_encode($data, JSON_UNESCAPED_UNICODE);//envio el array final el formato json a AJAX
+    //$conexion=null;
