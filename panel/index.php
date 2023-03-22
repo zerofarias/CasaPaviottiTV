@@ -12,7 +12,7 @@
     <section class="wrapper">
       <div class="form signup">
         <header>PANEL ADMINISTRACION HOMENAJES</header>
-        <form class="form-class" action="" enctype="multipart/form-data">
+        <form class="form-class">
             <input type="text"  id="user" placeholder="Usuario" autocomplete="off" required />
             <input type="password"  id="pass" placeholder="Contraseña" autocomplete="off" required />
             <input type="submit" class="upload" id="save" value="ENVIAR" />
