@@ -1,5 +1,18 @@
 $(document).ready(function() {
 
+    function Validar(user,pass) {
+        $.ajax({
+            url: 'model/valida.php',
+            type: 'post',
+            data: {u:user, p:pass, opcion:2},
+            contentType: false,
+            processData: false,
+            success: function(response) {
+        
+            }
+        })
+    } 
+
         $(".upload").on('click', function(event) {
             event.preventDefault();
                 var user = $('#user').val();
@@ -23,22 +36,11 @@ $(document).ready(function() {
                                         timer: 1500
                                     })
                                 }else{
-                                        function Validar()
+                                        Validar(user,pass)
                                         }
                             }
                     });
 
 
-    function Validar(user,pass) {
-        $.ajax({
-            url: 'model/valida.php',
-            type: 'post',
-            data: {u:user, p:pass, opcion:2},
-            contentType: false,
-            processData: false,
-            success: function(response) {
-        
-            }
-        })
-    } 
+    
 });

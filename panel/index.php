@@ -14,7 +14,7 @@
         <header>PANEL ADMINISTRACION HOMENAJES</header>
         <form class="form-class" action="" enctype="multipart/form-data">
             <input type="text"  id="user" placeholder="Usuario" autocomplete="off" required />
-            <input type="pass"  id="pass" placeholder="Contraseña" autocomplete="off" required />
+            <input type="password"  id="pass" placeholder="Contraseña" autocomplete="off" required />
             <input type="submit" class="upload" id="save" value="ENVIAR" />
         </form>
       </div>
