@@ -8,7 +8,7 @@ $(document).ready(function() {
             data: { user:user , pass:pass , opcion:opcion},
             success: function(data){
             if (data === 0101) {
-                alert('passo')
+                location.href ='panel.php';
             }else{
                 Swal.fire({
                     position: 'top',
@@ -19,6 +19,15 @@ $(document).ready(function() {
                 })
             }
         console.log(data);
+            },
+            error: function(){
+                Swal.fire({
+                    position: 'top',
+                    icon: 'warning',
+                    title: 'Datos Incorrectos',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
             }
         })
     } 

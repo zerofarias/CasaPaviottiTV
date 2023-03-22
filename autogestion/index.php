@@ -1,13 +1,10 @@
 <?php 
-
-
-
 /////$hash = 107375838432;
 function ValidarHash($hash,$cod){
       include '../back/db/conexion.php';
       $objeto = new Conexion();
       $conexion = $objeto->Conectar();
-
+      
       if (strlen($hash) > 3 || strlen($cod) > 3) {
             $consulta = "SELECT apellido,fechasep FROM `extintos` WHERE `COD_EXTINTO` = '$cod' ";
             $resultado = $conexion->prepare($consulta);
@@ -28,13 +25,9 @@ function ValidarHash($hash,$cod){
       }
 }
 
-
 $hash = $_GET['hash'];
 $cod = substr($_GET['hash'],0,-2);
-
 $apellido =  ValidarHash($hash,$cod);
-
-
 ?>
 
 <!DOCTYPE html>
