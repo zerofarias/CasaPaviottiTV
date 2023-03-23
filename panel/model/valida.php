@@ -11,8 +11,6 @@ $conexion = $objeto->Conectar();
     $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
     date_default_timezone_set('America/Argentina/Cordoba'); 
 	$fecha = date('Y-m-d H:i:s');
-
-$opcion = 4;
     
     switch ($opcion) {
         case 1:
@@ -25,9 +23,9 @@ $opcion = 4;
                     $_SESSION['cod']=$row['cod_user'];
 			        $_SESSION['user']=$row['user'];
 			        $_SESSION['rol']=$row['rol'];
-                    $paso = 0101;
+                    $data = 0101;
                 }else{
-                    $paso = 4;
+                    $data = 4;
                 }
             break;
         case 4:

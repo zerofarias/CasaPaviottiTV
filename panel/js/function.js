@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
-    function Validar(user,pass,opcion) {
+    function Validar(user,pass) {
         $.ajax({
             url: 'model/valida.php',
             type: "POST",
             dataType: "json",
-            data: { user:user , pass:pass , opcion:opcion},
+            data: { user:user , pass:pass , opcion:1},
             success: function(data){
             if (data === 0101) {
                 location.href ='panel.php';
@@ -36,9 +36,6 @@ $(document).ready(function() {
             event.preventDefault();
                 let user = $('#user').val();
                 let pass = $('#pass').val();
-                let opcion = 1;
-
-                
                     
                     if (user.length==0){
                             Swal.fire({
@@ -58,7 +55,7 @@ $(document).ready(function() {
                                         timer: 1500
                                     })
                                 }else{
-                                        Validar(user,pass,opcion)
+                                        Validar(user,pass)
                                         }
                             }
                     });

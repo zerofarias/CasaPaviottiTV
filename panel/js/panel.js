@@ -18,10 +18,17 @@ $(document).ready(function() {
             {"data": "religion"},
             {"data": "frace"},
             {"data": "apodo"},
-            {"data": "foto"},
-
-            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary  btn-sm agregar1' title='Editar'><i class='fas fa-edit'></i></button><button class='btn btn-warning btn-sm btnSolicitud' title='Imprimir Solicitud'><i class='fas fa-print'></i></button><button class='btn btn-danger btn-sm btnBorrar' title='Eliminar'><i class='fas fa-trash-alt'></i></button></div></div>"}
+            { "data": "foto" ,
+              "render": function (data) {
+              return '<img src="../autogestion/images/'+data+' " width="45px">';}
+            },
+            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary  btn-sm agregar1' title='Editar'><i class='fas fa-edit'></i></button><button class='btn btn-warning btn-sm btnSolicitud' title='Imprimir Solicitud'><i class='fas fa-print'></i></button><button class='btn btn-danger btn-sm btnBorrar' title='Eliminar'><span class='material-symbols-outlined'>cancel</span></button></div></div>"}
         ],
+        'rowCallback': function(row, data) {
+            //$(row).find('td:eq(10)').html("<img src="+data.foto+" >");
+            
+            //$(row).find('td:eq(5)').text("$ " + data.cinco);
+        },
         order: [[0, "desc"]],
         iDisplayLength: 50, 
         language: {
@@ -39,8 +46,9 @@ $(document).ready(function() {
                 },
                 "sProcessing":"Procesando...",
             },
-        //para usar los botones   
+        
         responsive: true,
+            details: true,
                   columnDefs: [
             { responsivePriority: 1, targets: 0 },
             { responsivePriority: 2, targets: -1 }
