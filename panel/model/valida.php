@@ -12,7 +12,7 @@ $conexion = $objeto->Conectar();
     date_default_timezone_set('America/Argentina/Cordoba'); 
 	$fecha = date('Y-m-d H:i:s');
 
-$opcion = 1;
+$opcion = 4;
     
     switch ($opcion) {
         case 1:
@@ -30,11 +30,13 @@ $opcion = 1;
                     $paso = 4;
                 }
             break;
+        case 4:
+            $consulta = "SELECT * FROM `extintos`  ORDER BY COD_EXTINTO DESC LIMIT 50";			
+            $resultado = $conexion->prepare($consulta);
+            $resultado->execute();
+            $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            
+            break;
 
     }
-print json_encode($paso, JSON_UNESCAPED_UNICODE);//envio el array final el formato json a AJAX
-           // $conexion=null; 
-    
-
-    //print json_encode($data, JSON_UNESCAPED_UNICODE);//envio el array final el formato json a AJAX
-    //$conexion=null;
+print json_encode($data, JSON_UNESCAPED_UNICODE);//envio el array final el formato json a AJAX

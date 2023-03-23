@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="shortcut icon" href="../back/imglogo/casalogo.png">
   </head>
-  <body>
+  <body class="body2">
     <section class="wrapper">
       <div class="form signup">
         <header>PANEL ADMINISTRACION HOMENAJES</header>
