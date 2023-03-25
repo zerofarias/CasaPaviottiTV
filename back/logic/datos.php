@@ -21,7 +21,7 @@ switch($opcion){
         break;
 
     case 2:
-        $consulta = "";
+        $consulta = "SELECT * FROM `extintos` ORDER BY `COD_EXTINTO` DESC LIMIT 30";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();        
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
