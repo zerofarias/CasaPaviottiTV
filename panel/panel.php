@@ -7,7 +7,6 @@ session_start();
 		header("Location:https://paviotti.com.ar/");
 	};
 ?>
-
 <html lang="es" dir="ltr">
 <head>
     <meta charset="UTF-8" />
